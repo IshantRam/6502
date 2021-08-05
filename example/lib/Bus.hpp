@@ -1,5 +1,6 @@
 #pragma once
 #include "util.hpp"
+#include "6502.hpp"
 
 // Memory Limit of RAM or MAX Size of RAM
 #define MEMORY_LIMIT 64 * 1024
@@ -10,6 +11,9 @@ public:
     // Fake RAM for this example
     u8 RAM[MEMORY_LIMIT];
 
+    // The CPU for this example
+    MOS6502 CPU;
+    
     // constructor - initialize the RAM with all 0 Byte
     Bus();
 
@@ -27,6 +31,9 @@ Bus::Bus()
     {
         i = 0;
     };
+    this->RAM[0xFFFC] = 0x00;
+    this->RAM[0xFFFD] = 0x80;
+    this->CPU = MOS6502();
 };
 
 // ..

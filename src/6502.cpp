@@ -376,6 +376,21 @@ void MOS6502::setFlag(Flags flag, bool state)
     }
 };
 
+void MOS6502::tick()
+{
+    this->IR = this->read(this->PC);
+    if (this->IR == 0)
+        return;
+    this->PC += 1;
+
+    this->Cycles += this->lookUpTable[this->IR].cycles;
+    u8 addresMode = (this->*lookUpTable[this->IR].addresMode)();
+    u8 Operation = (this->*lookUpTable[this->IR].Operation)();
+
+    this->Cycles += (addresMode & Operation);
+    setFlag(U, 1);
+};
+
 /* ADDRESSING MODES */
 
 // Impiled

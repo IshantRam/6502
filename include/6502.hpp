@@ -309,4 +309,6 @@ public:
 
 	// setFlag - sets a flag
 	void setFlag(Flags flag, bool state);
+
+	void tick();
 };
