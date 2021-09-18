@@ -13,4 +13,4 @@ run:
 	@cmd /k "cd bin & example.exe & exit"	
 
 clean:
-	@cmd /k "cd bin & del example.exe & exit"
+	@cmd /k "cd bin & del example.* & del 6502.o & exit"
